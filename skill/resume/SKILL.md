@@ -1,7 +1,7 @@
 ---
 name: resume
 description: 面试八股与面经的学习闭环。把用户发来的八股/面经消化成"给 LLM 读的" llm-wiki（wiki/ 目录），并支持出题检验与检索增强回答。当用户发来八股题、面经、知识点，或要求"消化进 wiki / ingest"、"出题检验 / question / 考我"、"查 wiki 回答 / query"时使用。
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Resume Skill — 面试学习闭环
@@ -31,6 +31,7 @@ wiki 的设计哲学参考 Karpathy「为 LLM 写文档」的思路：扁平 mar
 
 > tags: <主题>, <子主题>, <关键词...>
 > weight: <N>
+> wrong: <N>
 > updated: <YYYY-MM-DD>
 
 ## 核心结论
@@ -60,6 +61,15 @@ weight 表示该知识点在面经/八股中被**独立命中的次数**，近�
 - 用途：weight 越高 = 越高频考点，在 question 出题和 query 检索中优先级越高。
 - `wiki/index.md` 条目必须带 weight（格式见下），使得只读 index 就能排优先级。
 
+## wrong（复习信号）
+
+wrong 表示该知识点在 question 判分中的**待复习程度**，与考频（weight）独立：
+
+- 缺省即 0：文件里没有 `wrong` 行等于 `wrong: 0`，新建文件无需写这一行。
+- question 判分：答错或有明显遗漏 → `wrong +1`；完整答对 → `wrong -1`（最低 0）。
+- 变动时同步更新知识点文件和 `wiki/index.md`：wrong > 0 的条目在 weight 后追加 `· wrong<N>`，归 0 后移除该标记。
+- 用途：question 选题时 **wrong > 0 的知识点优先于纯 weight 排序**（先补短板，再刷高频）；query 不受 wrong 影响。
+
 ## 三个功能的执行细则
 
 ### 1. ingest（消化）
@@ -86,10 +96,11 @@ weight 表示该知识点在面经/八股中被**独立命中的次数**，近�
 
 步骤：
 1. 读取 `wiki/index.md`，据用户指定范围（某主题 / 全部 / 最近新增）选取知识点。
-2. **选题按 weight 降序优先**（高频考点先考）；同 weight 内优先最近 updated 或用户薄弱主题。用户指定范围时仍在范围内按 weight 排序。
+2. **选题优先级：先 wrong 降序（补短板），wrong 相同再 weight 降序（刷高频）**；再同则优先最近 updated 或用户薄弱主题。用户指定范围时仍在范围内按此排序。
 3. 从对应知识点文件出题：优先出**核心结论**和**易错点/追问链**里的内容。
 4. 一次出 1 题，等用户作答后再对照 wiki 判分、指出遗漏，再出下一题（除非用户要求批量）。
 5. 判分依据以 wiki 内容为准；若用户答出了 wiki 里没有的正确内容，顺手把它 ingest 进去。
+6. **判分后更新 wrong**：答错/明显遗漏 → `wrong +1`，完整答对 → `wrong -1`（最低 0）；同步知识点文件与 index，会话结束按 ingest 的规则提交推送。
 
 ### 3. query（检索增强）
 触发：回答用户提问 / 面经题之前**自动**进行，无需用户显式要求。

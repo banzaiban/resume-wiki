@@ -26,7 +26,7 @@ project/    项目经历与面经复盘
 
 ## 知识点清单
 
-<!-- 格式：- [标题](相对路径) — 一句话摘要 · w<N> · updated YYYY-MM-DD（w<N> = weight，考频权重）-->
+<!-- 格式：- [标题](相对路径) — 一句话摘要 · w<N> · updated YYYY-MM-DD（w<N> = weight 考频权重；答错过的条目在 w<N> 后加 · wrong<N>，归 0 移除）-->
 
 ### python/
 - [Python 异步与多线程的互斥](python/asyncio-vs-threading-mutex.md) — asyncio.Lock vs threading.Lock、GIL 下的并发模型选择、跨线程协程交互 · w1 · updated 2026-07-30
