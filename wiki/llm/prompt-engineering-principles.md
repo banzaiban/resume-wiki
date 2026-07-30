@@ -2,6 +2,7 @@
 
 > tags: llm, prompt-engineering, few-shot, 结构化输出
 > weight: 2
+> wrong: 1
 > updated: 2026-07-30
 
 ## 核心结论
