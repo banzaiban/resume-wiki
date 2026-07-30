@@ -2,6 +2,7 @@
 
 > tags: rag, 向量检索, 混合召回, 重排序, chunking, embedding
 > weight: 3
+> wrong: 1
 > updated: 2026-07-30
 
 ## 核心结论

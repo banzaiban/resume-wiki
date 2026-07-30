@@ -2,6 +2,7 @@
 
 > tags: llm-agent, 意图识别, intent-classification, BERT, 级联架构
 > weight: 2
+> wrong: 1
 > updated: 2026-07-30
 
 ## 核心结论

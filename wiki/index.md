@@ -44,7 +44,7 @@ project/    项目经历与面经复盘
 ### llm-agent/
 - [Agent 工具调用失败处理](llm-agent/tool-call-failure-handling.md) — 重试(退避+幂等)→降级→监控告警→错误回传让模型自愈 · w1 · updated 2026-07-30
 - [提高工具调用准确率](llm-agent/tool-call-accuracy.md) — 工具描述写细 + few-shot + JSON Schema 约束 + 校验重试；工具多则做工具检索 · w1 · updated 2026-07-30
-- [意图识别优化](llm-agent/intent-classification-optimization.md) — BERT 小模型主分类 + 规则补漏 + 低置信度大模型兜底的级联架构 · w2 · updated 2026-07-30
+- [意图识别优化](llm-agent/intent-classification-optimization.md) — BERT 小模型主分类 + 规则补漏 + 低置信度大模型兜底的级联架构 · w2 · wrong1 · updated 2026-07-30
 - [评测数据集构建](llm-agent/eval-dataset-construction.md) — 线上日志分层抽样 + 人工标注 + 增强改写，覆盖短头长尾，防泄漏定期换血 · w1 · updated 2026-07-30
 - [Agent Memory 模块设计](llm-agent/agent-memory-design.md) — 短期 Redis 原文 / 中期摘要向量化+时间衰减 / 长期画像宽表，异步写入 · w1 · updated 2026-07-30
 - [Agent 与 Workflow 的取舍](llm-agent/agent-vs-workflow.md) — Workflow 定骨架保确定性，Agent 处理需推理的节点，混合使用 · w1 · updated 2026-07-30
@@ -54,7 +54,7 @@ project/    项目经历与面经复盘
 - [Bad Case 分析方法论](llm-agent/bad-case-analysis.md) — 坏例库打标→定期复盘→规则/prompt/训练数据分层修复→回归验证 · w1 · updated 2026-07-30
 
 ### rag/
-- [RAG 完整链路](rag/rag-pipeline.md) — 切片→向量化→混合召回(向量+BM25，RRF 或 0.3/0.7 加权)→重排序→top3-5→生成标注来源 · w3 · updated 2026-07-30
+- [RAG 完整链路](rag/rag-pipeline.md) — 切片→向量化→混合召回(向量+BM25，RRF 或 0.3/0.7 加权)→重排序→top3-5→生成标注来源 · w3 · wrong1 · updated 2026-07-30
 - [文本分块策略](rag/chunking-strategies.md) — 固定窗口/语义/递归分割 + overlap 10-20%；表格转 MD、图片 OCR、父子块 · w1 · updated 2026-07-30
 
 ### database/
