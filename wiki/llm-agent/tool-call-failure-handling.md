@@ -1,6 +1,7 @@
 # Agent 工具调用失败处理
 
 > tags: llm-agent, tool-call, 重试, 降级, 容错, 可观测
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

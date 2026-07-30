@@ -1,6 +1,7 @@
 # 最长回文子串
 
 > tags: algorithm, 字符串, 动态规划, 中心扩展, manacher, leetcode-5
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

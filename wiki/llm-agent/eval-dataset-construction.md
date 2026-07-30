@@ -1,6 +1,7 @@
 # 评测数据集构建
 
 > tags: llm-agent, evaluation, 评测集, 数据标注, benchmark
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

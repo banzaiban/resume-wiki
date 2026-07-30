@@ -1,6 +1,7 @@
 # 意图识别优化（小模型分类 + 规则 + 大模型兜底）
 
 > tags: llm-agent, 意图识别, intent-classification, BERT, 级联架构
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

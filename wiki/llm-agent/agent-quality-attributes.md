@@ -1,6 +1,7 @@
 # 合格 Agent 需要具备的特性
 
 > tags: llm-agent, 可靠性, 可观测性, 自纠错, 上下文管理
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

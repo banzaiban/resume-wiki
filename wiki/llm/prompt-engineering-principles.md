@@ -1,6 +1,7 @@
 # 什么样的 Prompt 效果好
 
 > tags: llm, prompt-engineering, few-shot, 结构化输出
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

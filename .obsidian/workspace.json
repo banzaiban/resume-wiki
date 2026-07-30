@@ -11,29 +11,14 @@
             "id": "9ee8518c11a3796d",
             "type": "leaf",
             "state": {
-              "type": "bases",
+              "type": "markdown",
               "state": {
-                "file": "未命名.base",
-                "viewName": "表格"
+                "file": "wiki/database/database-selection-for-business.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-table",
-              "title": "未命名"
-            }
-          }
-        ]
-      },
-      {
-        "id": "7f711f40d2e7266e",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "f2ab961eb1f4d551",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "关系图谱"
+              "icon": "lucide-file",
+              "title": "database-selection-for-business"
             }
           }
         ]
@@ -89,8 +74,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -199,15 +183,17 @@
       "bases:新建数据库": false
     }
   },
-  "active": "41503df4409cbdb3",
+  "active": "9ee8518c11a3796d",
   "lastOpenFiles": [
+    "skill/resume/SKILL.md.tmp.93467.1785404854019",
+    "wiki/algorithm/longest-palindromic-substring.md",
+    "未命名.base",
     "wiki/index.md",
     "skill/resume/SKILL.md",
     "wiki",
     "skill/resume",
     "skill",
     "README.md",
-    "欢迎.md",
-    "未命名.base"
+    "欢迎.md"
   ]
 }

@@ -1,6 +1,7 @@
 # Agent Memory 模块设计（三层记忆）
 
 > tags: llm-agent, memory, 短期记忆, 长期记忆, redis, 向量化
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

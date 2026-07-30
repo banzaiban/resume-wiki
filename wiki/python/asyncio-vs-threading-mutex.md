@@ -1,6 +1,7 @@
 # Python 异步与多线程的互斥
 
 > tags: python, asyncio, threading, GIL, lock, 并发
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

@@ -1,6 +1,7 @@
 # Bad Case 分析方法论
 
 > tags: llm-agent, bad-case, 复盘, 迭代闭环, 数据飞轮
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

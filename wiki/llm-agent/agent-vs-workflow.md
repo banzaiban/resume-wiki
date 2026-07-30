@@ -1,6 +1,7 @@
 # Agent 与 Workflow 的取舍
 
 > tags: llm-agent, workflow, 编排, 架构取舍
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

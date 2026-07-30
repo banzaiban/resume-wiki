@@ -1,6 +1,7 @@
 # Vibe Coding / AI 辅助编码的交付质量保障
 
 > tags: ai-coding, vibe-coding, code-review, 工程实践
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论

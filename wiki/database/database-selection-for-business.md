@@ -1,6 +1,7 @@
 # 业务数据的多数据库选型
 
 > tags: database, mysql, redis, 向量库, elasticsearch, neo4j, 选型
+> weight: 1
 > updated: 2026-07-30
 
 ## 核心结论
