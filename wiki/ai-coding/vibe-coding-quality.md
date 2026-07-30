@@ -1,7 +1,7 @@
 # Vibe Coding / AI 辅助编码的交付质量保障
 
 > tags: ai-coding, vibe-coding, code-review, 工程实践
-> weight: 1
+> weight: 2
 > updated: 2026-07-30
 
 ## 核心结论
@@ -25,4 +25,5 @@
 - 常见追问链：哪些能交给 AI → 怎么 review → 测试策略 → 典型翻车 case
 
 ## 面经来源
-快手 Agent 研发一面（2026-07）；同场追问：用过哪些代码 Agent、调用量级（答：Codex + 自研补全 Agent，日均几十万调用、峰值 QPS 百级）
+快手 Agent 研发一面（2026-07）：Vibe Coding 如何保障交付质量；用过哪些代码 Agent、调用量级（Codex + 自研补全 Agent，日均几十万调用、峰值 QPS 百级）
+美团 AI 应用开发一面（2026-07）：怎么用 AI 辅助写代码和学习（Claude Code 做补全/debug/复杂重构/生成单测，Trae IDE 做本地环境管理与资源搜索）

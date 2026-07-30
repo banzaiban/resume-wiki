@@ -1,11 +1,14 @@
 # 什么样的 Prompt 效果好
 
 > tags: llm, prompt-engineering, few-shot, 结构化输出
-> weight: 1
+> weight: 2
 > updated: 2026-07-30
 
 ## 核心结论
 三要素：指令直白无歧义、给 2-3 个高质量例子（few-shot）、输出格式写死（JSON Schema/固定模板）。结构上角色和约束放前面、例子紧跟、任务输入放最后；需要稳定输出时把 temperature 调低。
+
+## 标准 Prompt 结构
+`系统指令/角色` → `背景知识（含 RAG 上下文）` → `规则与约束` → `few-shot 示例` → `用户输入` → `输出格式要求`。重要指令放开头，关键约束在结尾再重申一次。
 
 ## 展开
 - **直白**：用祈使句写清做什么、不做什么；避免"尽量、可能"这类模糊词；一条指令一件事，复杂任务拆步骤（先分析再输出）。
@@ -22,8 +25,9 @@
 - 追问"prompt 太长怎么办"：删冗余规则、把稳定知识挪到 RAG、例子换成更短的典型 case。
 
 ## 关联
-- 相关知识点：[[wiki/llm-agent/intent-classification-optimization.md]]、[[wiki/rag/rag-pipeline.md]]
+- 相关知识点：[[wiki/llm/lost-in-the-middle.md]]、[[wiki/llm-agent/tool-call-accuracy.md]]、[[wiki/llm-agent/intent-classification-optimization.md]]、[[wiki/rag/rag-pipeline.md]]
 - 常见追问链：few-shot 怎么选例子 → 格式约束怎么保证 → temperature 原理 → CoT 适用场景
 
 ## 面经来源
-快手 Agent 研发一面（2026-07）
+- 快手 Agent 研发一面（2026-07）：什么样的 Prompt 效果好
+- 淘宝闪购 AI 应用开发一面（2026-07）：标准 Prompt 结构包含哪些、Prompt 工程常用优化手段

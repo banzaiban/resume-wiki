@@ -1,7 +1,7 @@
 # RAG 完整链路
 
 > tags: rag, 向量检索, 混合召回, 重排序, chunking, embedding
-> weight: 1
+> weight: 3
 > updated: 2026-07-30
 
 ## 核心结论
@@ -15,10 +15,12 @@
 
 **在线检索**
 - query 预处理：改写（补全指代、拆多跳问题）、可选 HyDE（用假设答案去检索）。
-- 混合召回：向量检索抓语义相似 + BM25 抓精确关键词（术语、编号、人名），两路结果用 RRF（reciprocal rank fusion）合并——纯向量对精确匹配弱，纯关键词对同义改写弱，混合互补。
-- 重排序：cross-encoder（如 bge-reranker）对 query-doc 对精排，比双塔 embedding 更准但更慢，所以只对召回的几十条做。
+- 混合召回：向量检索抓语义相似 + BM25 抓精确关键词（术语、编号、人名），两路结果融合——纯向量对精确匹配弱，纯关键词对同义改写弱，混合互补。融合方式：RRF（reciprocal rank fusion，按名次倒数加权，无需分数归一）或加权求和（线上常见 BM25 0.3 / 向量 0.7，需先各自归一化，权重靠评测集调）。
+- 重排序：cross-encoder（如 bge-reranker）对 query-doc 对精排，比双塔 embedding 更准但更慢，所以只对召回的几十条做。粗排召回 topK（几十）→ 精排取 top 3-5。
 - 组装：top 3-5 段拼 prompt，带来源标识；控制总长度防 lost-in-the-middle。
 - 生成：要求模型只依据给定上下文回答、注明引用来源、检索不到就说不知道（降幻觉）。
+
+**让回答更准的抓手**（按性价比排序）：query 改写 → 混合召回 → reranker 精排 → 检索结果去噪（低分过滤/去重）→ 只喂 top 3-5 → prompt 约束引用。
 
 ## 关键细节 / 易错点
 - 效果瓶颈通常在**检索**不在生成：先评检索命中率（recall@k、MRR），再看端到端。
@@ -29,8 +31,10 @@
 - 更新问题：文档变更要增量重建索引，注意新旧版本共存时的一致性。
 
 ## 关联
-- 相关知识点：[[wiki/llm/prompt-engineering-principles.md]]、[[wiki/database/database-selection-for-business.md]]
+- 相关知识点：[[wiki/rag/chunking-strategies.md]]、[[wiki/llm/embedding-models.md]]、[[wiki/llm/lost-in-the-middle.md]]、[[wiki/llm/hallucination.md]]、[[wiki/database/database-selection-for-business.md]]
 - 常见追问链：chunk 怎么切 → 为什么混合召回 → rerank 原理 → 怎么评测 → 幻觉怎么降
 
 ## 面经来源
-快手 Agent 研发一面（2026-07）
+- 快手 Agent 研发一面（2026-07）
+- 小米 AI 大模型应用开发一面（2026-07）：RAG 链路、向量库选 Milvus（标量过滤 + HNSW）
+- 淘宝闪购 AI 应用开发一面（2026-07）：RAG 知识库构建流程、检索优化、多路召回融合权重
