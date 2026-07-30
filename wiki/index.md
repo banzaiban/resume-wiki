@@ -58,7 +58,7 @@ project/    项目经历与面经复盘
 - [文本分块策略](rag/chunking-strategies.md) — 固定窗口/语义/递归分割 + overlap 10-20%；表格转 MD、图片 OCR、父子块 · w1 · updated 2026-07-30
 
 ### database/
-- [业务数据的多数据库选型](database/database-selection-for-business.md) — MySQL 核心业务 / Redis 缓存 / 向量库 embedding / ES 日志搜索 / Neo4j 图谱 · w2 · updated 2026-07-30
+- [业务数据的多数据库选型](database/database-selection-for-business.md) — MySQL 核心业务 / Redis 缓存 / 向量库 embedding / ES 日志搜索 / Neo4j 图谱 · w2 · wrong1 · updated 2026-07-30
 
 ### distributed/
 - [消息队列选型 Kafka/RocketMQ/RabbitMQ](distributed/mq-comparison.md) — 高吞吐 vs 事务消息 vs 灵活路由；RocketMQ 半消息保证下单扣库存一致 · w1 · updated 2026-07-30
