@@ -32,7 +32,7 @@ project/    项目经历与面经复盘
 - [Python 异步与多线程的互斥](python/asyncio-vs-threading-mutex.md) — asyncio.Lock vs threading.Lock、GIL 下的并发模型选择、跨线程协程交互 · w1 · updated 2026-07-30
 
 ### llm/
-- [什么样的 Prompt 效果好](llm/prompt-engineering-principles.md) — 指令直白 + few-shot + 输出格式说死；标准 Prompt 结构与 temperature 调参 · w2 · wrong1 · updated 2026-07-30
+- [什么样的 Prompt 效果好](llm/prompt-engineering-principles.md) — 指令直白 + few-shot + 输出格式说死；标准 Prompt 结构与 temperature 调参 · w2 · wrong0.5 · updated 2026-07-30
 - [Transformer 与自注意力](llm/transformer-self-attention.md) — QKV 算权重、除 √dk 防 softmax 饱和、多头/KV Cache/因果 mask · w1 · updated 2026-07-30
 - [LayerNorm](llm/layernorm.md) — 特征维归一化，NLP 不用 BN 的原因；Pre-LN vs Post-LN、RMSNorm · w1 · updated 2026-07-30
 - [位置编码与长文本外推](llm/positional-encoding.md) — 绝对/相对/RoPE 旋转矩阵；PI/NTK/YaRN 插值、滑动窗口扩上下文 · w1 · updated 2026-07-30
