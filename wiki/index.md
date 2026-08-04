@@ -96,6 +96,7 @@ project/    项目经历与面经复盘
 ### network/
 - [TCP 与 UDP 的区别及选型](network/tcp-vs-udp.md) — 可靠有序 vs 低延迟；游戏选 UDP，丢包排查与应用层可靠性补偿、QUIC · w1 · updated 2026-07-30
 - [HTTP GET 与 POST 的区别](network/http-get-vs-post.md) — 安全/幂等语义、缓存、参数位置；明文都靠 HTTPS、改状态操作禁用 GET · w1 · updated 2026-08-04
+- [TCP 断开为什么四次挥手](network/tcp-four-way-close.md) — 全双工两方向独立关闭、ACK 与 FIN 不能合并；三次挥手特例、TIME_WAIT 2MSL、CLOSE_WAIT 泄漏 · w1 · updated 2026-08-04
 
 ### ai-coding/
 - [Vibe Coding 交付质量保障](ai-coding/vibe-coding-quality.md) — 任务拆小、核心逻辑人审、关键单测、静态检查门禁；AI coding 技巧与 NL→可靠执行路径 · w4 · updated 2026-08-04
