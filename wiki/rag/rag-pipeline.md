@@ -1,9 +1,9 @@
 # RAG 完整链路
 
 > tags: rag, 向量检索, 混合召回, 重排序, chunking, embedding
-> weight: 3
+> weight: 5
 > wrong: 1
-> updated: 2026-07-30
+> updated: 2026-08-04
 
 ## 核心结论
 离线：文档解析 → 切片（chunking）→ embedding 向量化 → 存向量库。在线：query 改写 → 混合召回（向量 + 关键词 BM25）→ 重排序（cross-encoder）→ 取 top-k 拼上下文 → LLM 生成 → 引用标注来源。
@@ -30,6 +30,8 @@
 - 追问"怎么评测 RAG"：检索指标（recall/MRR）+ 生成指标（忠实度 faithfulness、答案相关性），可用 RAGAS 框架。
 - 追问"多跳问题"：query 分解 / 迭代检索（检索→部分回答→再检索）/ Agentic RAG。
 - 更新问题：文档变更要增量重建索引，注意新旧版本共存时的一致性。
+- 追问"向量检索和关键词检索各适合什么场景、为什么混合检索更多"：向量擅长语义相似、同义改写、模糊表达，弱于精确匹配（编号、术语、人名、型号）；BM25 关键词反之。真实 query 两种成分都有，单一路线都有短板，所以混合检索成主流。
+- 追问"检索为空/超时怎么兜底"：为空 → 先降阈值/扩大召回重试一次，仍空则 prompt 明确要求模型回答"未检索到相关资料"并引导用户补充，禁止硬编；超时 → 用已召回的部分结果降级作答或走缓存答案，同时打点告警。
 
 ## 关联
 - 相关知识点：[[wiki/rag/chunking-strategies.md]]、[[wiki/llm/embedding-models.md]]、[[wiki/llm/lost-in-the-middle.md]]、[[wiki/llm/hallucination.md]]、[[wiki/database/database-selection-for-business.md]]
@@ -39,3 +41,5 @@
 - 快手 Agent 研发一面（2026-07）
 - 小米 AI 大模型应用开发一面（2026-07）：RAG 链路、向量库选 Milvus（标量过滤 + HNSW）
 - 淘宝闪购 AI 应用开发一面（2026-07）：RAG 知识库构建流程、检索优化、多路召回融合权重
+- 美团 AI Agent 开发一面（2026-08）：向量检索 vs 关键词检索场景、为什么混合检索更多
+- 阿里云 AI 应用研发一面（2026-08）：检索为空或超时 Prompt 怎么兜底

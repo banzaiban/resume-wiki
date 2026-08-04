@@ -1,8 +1,8 @@
 # Python 异步与多线程的互斥
 
 > tags: python, asyncio, threading, GIL, lock, 并发
-> weight: 1
-> updated: 2026-07-30
+> weight: 2
+> updated: 2026-08-04
 
 ## 核心结论
 互斥都靠锁：协程用 `asyncio.Lock`，多线程用 `threading.Lock`，两者不能混用。因为 CPython 有 GIL，多线程跑 CPU 密集任务无加速，所以 IO 密集场景更多用协程，或用消息队列解耦。
@@ -15,6 +15,7 @@
 - 跨线程与协程交互的正确姿势：`loop.call_soon_threadsafe()`、`asyncio.run_coroutine_threadsafe()`、`loop.run_in_executor()`（把阻塞调用丢线程池，避免卡事件循环）。
 
 ## 关键细节 / 易错点
+- 追问"Python 异步在 Agent 开发里有什么用处、哪些场景必须用异步"：Agent 请求的大部分时间在等 LLM API / 工具 IO——① 一轮内多个无依赖工具并发调用（`asyncio.gather` 并发 tool calls）大幅降延迟；② SSE/WebSocket 流式输出（async generator 逐 token 推送）天然异步；③ 高并发服务：协程单机可撑万级长连接，线程池连接数一高内存和切换开销爆炸；④ 用 `asyncio.Semaphore` 对下游 LLM API 做并发限流。必须用异步：并发工具调用、流式响应、长连接推送。
 - GIL 保证的是解释器内部状态安全，**不保证业务临界区原子性**（如 `x += 1` 仍需锁，因为它是多条字节码）。
 - `asyncio.Lock` 在 3.10+ 不再接受 `loop` 参数；它靠 `await` 让出控制权实现互斥。
 - 追问"协程里要调用阻塞库怎么办"：`run_in_executor` / `asyncio.to_thread()`。
@@ -24,4 +25,5 @@
 - 常见追问链：GIL 是什么 → CPU/IO 密集怎么选并发模型 → 协程里调阻塞代码怎么办 → 分布式锁
 
 ## 面经来源
-快手 Agent 研发一面（2026-07）
+- 快手 Agent 研发一面（2026-07）
+- 美团 AI Agent 开发一面（2026-08）：Python 异步编程在 Agent 应用开发的用处、必须异步的场景

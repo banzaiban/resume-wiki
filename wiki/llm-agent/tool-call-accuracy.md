@@ -1,8 +1,8 @@
 # 提高工具调用准确率
 
 > tags: llm-agent, tool-call, function-calling, json-schema, few-shot
-> weight: 1
-> updated: 2026-07-30
+> weight: 4
+> updated: 2026-08-04
 
 ## 核心结论
 四个抓手：① 工具描述写细（用途、适用/不适用场景、每个参数含义与取值范围）；② 给 few-shot 示例（尤其易混工具的对比样例）；③ 输出强制 JSON Schema / function calling 约束；④ 参数校验 + 失败自动重试（把校验错误回传让模型改）。
@@ -20,10 +20,15 @@
 - 典型失败模式：选对工具但参数抽错（时间、ID 类最常见）→ 在描述里给格式示例（如 "date: YYYY-MM-DD"）。
 - 追问"工具很多怎么办"：工具检索/分层路由（先选类别再选具体工具）。
 - 追问"模型幻觉出不存在的工具"：白名单校验 + 结构化输出约束，出现即拦截并回传可用工具列表。
+- 追问"怎么保证稳定输出 JSON 调工具、格式不对代码里怎么兜底"：保证侧——优先 function calling / JSON mode（服务端约束解码保证格式合法）；其次 prompt 里给 schema + 完整示例；强约束场景用 outlines/jsonformer 按 grammar 生成。兜底侧——解析失败先程序化修复（jsonrepair、正则提取 ```json 代码块、去尾逗号），仍失败把具体解析错误回传模型重生成，多次失败降级为默认话术/人工。
+- 追问"工具上百个怎么设计 Tool Retrieval 降低上下文压力"：工具名+描述向量化建索引，query 先召回 top-N（5-10）候选工具，只把候选的 schema 注入 prompt；或分层路由（先选工具域再选具体工具）；调用后按准确率反馈更新工具向量与描述。
 
 ## 关联
 - 相关知识点：[[wiki/llm-agent/tool-call-failure-handling.md]]、[[wiki/llm/prompt-engineering-principles.md]]
 - 常见追问链：怎么提准 → 工具太多怎么办 → 参数错了怎么办 → 怎么评测
 
 ## 面经来源
-淘宝闪购 AI 应用开发一面（2026-07）
+- 淘宝闪购 AI 应用开发一面（2026-07）
+- 美团 AI Agent 开发一面（2026-08）：怎么保证稳定输出 JSON 调工具、格式不对怎么兜底
+- 阿里云 AI 应用研发一面（2026-08）：同上（JSON 稳定输出与兜底）
+- 未知公司面经片段A（2026-08）：工具规模上百个，如何设计 Tool Retrieval 降低上下文压力
